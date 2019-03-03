@@ -29,9 +29,9 @@
 #./nasteroids-seq 10 250 5 2000
 
 clear
-echo "Compilando archivo"
 
+echo "Compilando archivo"
 gcc -Wall -Werror -std=c11 -o mycat mycat.c
 
-
-./mycat ./p1_tests/f1.txt
+echo "Ejecutando archivo"
+./mycat ./p1_tests/f3.txt

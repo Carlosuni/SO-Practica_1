@@ -10,13 +10,13 @@
 
 // Comprueba que el fichero existe
 // Si el fichero existe devuelvo 1
-// int fichero_existe (const char* fichero)
-// {
-// 	struct stat propiedades;
-// 	return (stat(fichero, propiedades) == 0);
-// }
+int fichero_existe (const char* fichero)
+{
+	struct stat propiedades;
+ 	return (stat(fichero, &propiedades) == 0);
+}
 
-// Se le pasa por referencia 2 punteros a 2 arrays de caracteres
+// Se le pasa por referencia 1 puntero a 1 array de caracteres
 int leer_archivo(char *archivo_original)
 {
 	char buffer [TAM_BUFFER];
@@ -32,12 +32,19 @@ int leer_archivo(char *archivo_original)
 	}
 
 
-	// Leemos el archivo original y lo vamos copiando al archivo destino
+	// Leemos el archivo original y lo vamos imprimiendo por pantalla
 
 	// Leer hasta llegar al fin del fichero
 	while ((bytes_leidos = read(fd_orig, buffer, TAM_BUFFER)) > 0)
 	{
-        printf("%s", buffer);
+
+        //printf("%s", buffer);
+		if (write(STDOUT_FILENO, buffer, bytes_leidos) < bytes_leidos)
+		{
+			// Si no puede escribir salimos
+			close(fd_orig);
+			exit(-1);
+		}
 
 	}
 
@@ -46,7 +53,7 @@ int leer_archivo(char *archivo_original)
 	{
 		close(fd_orig);
 		perror("Error a leer el archivo\n");
-		exit(-4);
+		exit(-1);
 	}
 
     return 1;
@@ -56,7 +63,7 @@ int leer_archivo(char *archivo_original)
 
 int main(int argc, char *argv[])
 {  
-    if (argc < 1)      
+    if (argc != 2)      
 	{
 		fprintf(stderr, "Error. Número de argumentos inválidos\n");
 		exit(-1);
@@ -64,14 +71,14 @@ int main(int argc, char *argv[])
 
     //char *ruta_f_original = "./p1_tests/f1.txt";
 
-    // if (!fichero_existe(argv[1]))
-	// {
-	// 	perror("No existe el archivo");
-	// 	exit(-1);
-	// }
+    if (!fichero_existe(argv[1]))
+	{
+		perror("No existe el archivo");
+		exit(-1);
+	}
 
     
-    printf("Ejecutando programa mycat sobre el archivo %s\n", argv[1]);
+    //printf("Ejecutando programa mycat sobre el archivo %s\n", argv[1]);
 
     int resultado;
 	resultado = leer_archivo(argv[1]);
