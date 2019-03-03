@@ -30,17 +30,17 @@
 
 clear
 
-echo "Compilando archivo mycat"
-gcc -Wall -Werror -std=c11 -o mycat mycat.c
-echo "Ejecutando archivo mycat"
-./mycat p1_tests/f1.txt
+#echo "Compilando archivo mycat"
+#gcc -Wall -Werror -std=c11 -o mycat mycat.c
+#echo "Ejecutando archivo mycat"
+#./mycat p1_tests/f1.txt
 
 #echo "Compilando archivo myls"
 #gcc -Wall -Werror -std=c11 -o myls myls.c
 #echo "Ejecutando archivo myls"
 #./myls p1_tests/
 
-#echo "Compilando archivo mysize"
-#gcc -Wall -Werror -std=c11 -o mysize mysize.c
-#echo "Ejecutando archivo mysize"
-#./mysize ./p1_tests/
+echo "Compilando archivo mysize"
+gcc -Wall -Werror -std=c11 -o mysize mysize.c
+echo "Ejecutando archivo mysize"
+./mysize p1_tests/

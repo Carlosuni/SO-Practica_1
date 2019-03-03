@@ -3,7 +3,6 @@
 #include <sys/types.h>          /* Cabeceras llamadas al sistema opendir, readdir y closedir  */
 #include <dirent.h>
 #include <string.h>
-//
 #include <errno.h>
 #include <stdlib.h>
 
@@ -46,8 +45,8 @@ int main(int argc, char *argv[])
 	}
 	else{
 		//si se pasa argumento(directorio)... se lista el del directorio c
-		printf(argv[0]);
-		printf(argv[1]);
+		printf("%s", argv[0]);
+		printf("%s", argv[1]);
 		printf("ok2\n");
 
 		//ponemos en el path el argumento 1 ( que es el directorio que queremos listar)
