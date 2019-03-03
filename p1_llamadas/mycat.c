@@ -4,6 +4,7 @@
 #include <fcntl.h>
 #include <unistd.h>             /* Cabecera llamadas al sistema read, write y close  */
 #include <stdlib.h>
+#include <string.h>
 
 #define TAM_BUFFER 1024
 
@@ -69,9 +70,13 @@ int main(int argc, char *argv[])
 		exit(-1);
 	}
 
-    //char *ruta_f_original = "./p1_tests/f1.txt";
+    char ruta_f_original[1024];
+	strcpy(ruta_f_original, "./");
+	strcat(ruta_f_original, argv[1]);
 
-    if (!fichero_existe(argv[1]))
+	//printf("%s", ruta_f_original);
+
+    if (!fichero_existe(ruta_f_original))
 	{
 		perror("No existe el archivo");
 		exit(-1);
@@ -81,7 +86,7 @@ int main(int argc, char *argv[])
     //printf("Ejecutando programa mycat sobre el archivo %s\n", argv[1]);
 
     int resultado;
-	resultado = leer_archivo(argv[1]);
+	resultado = leer_archivo(ruta_f_original);
 
     if (resultado < 0)
 	{
