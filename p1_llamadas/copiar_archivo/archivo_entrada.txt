@@ -1,0 +1,1 @@
+hola, este texto está dentro de un archivo txt de entrada
